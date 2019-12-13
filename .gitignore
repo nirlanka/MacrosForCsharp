@@ -1,0 +1,13 @@
+bin/
+obj/
+report/
+*.iml
+**/Thumbs.db
+.idea/
+out/
+
+assets/fonts/**/*.svg
+assets/fonts/**/*ttf.hash
+assets/fonts/**/*.eot
+assets/fonts/**/*.woff
+/DepsInstall.hx.n

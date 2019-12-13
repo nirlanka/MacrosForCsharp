@@ -1,0 +1,7 @@
+-cp src
+-main Main
+-python bin/python/main.py
+# -js bin/js/main.js
+# -lua bin/lua/main.lua
+# -cs bin/cs/App
+# -cpp bin/cpp/App
