@@ -4,6 +4,7 @@ import macromania.constructs.Namespace;
 import macromania.constructs.Klass;
 import macromania.constructs.Method;
 import macromania.constructs.Context;
+import macromania.constructs.Makro;
 
 class OverviewParseStrategy implements IParseStrategy {
 	var code: String;
@@ -22,8 +23,18 @@ class OverviewParseStrategy implements IParseStrategy {
 
 	public function parse() {
 		var lines = code.split('\n');
+
+		var isCapturingMacro = false;
   	
 	  	for (l in lines) {
+	  		if (isCapturingMacro) {
+	  			if (StringTools.trim(l) != '') {
+	  				current.makro.code.push(l);
+	  			} else {
+	  				isCapturingMacro = false;
+	  			}
+	  		}
+
 	  		l += '\n';
 
 			var eregNamespace = ~/\s*namespace\s+(.+)\s*\n/;
@@ -51,7 +62,23 @@ class OverviewParseStrategy implements IParseStrategy {
 	  						throw 'No class for method';
 	  					}
 	  					current.klass.methods.push(current.method);
-	  				}
+	  				} else {
+  						var eregMacro = ~/\/\/\s*macro:\s*(.+)\s*[\n;]/;
+	  					var isMacro = eregMacro.match(l);
+
+	  					if (isMacro) {
+	  						current.makro = new Makro(StringTools.trim(eregMacro.matched(1)));
+	  						isCapturingMacro = true;
+
+	  						if (current.method != null) {
+	  							current.method.makros.push(current.makro);
+	  						} else if (current.klass != null) {
+	  							current.klass.makros.push(current.makro);
+	  						} else {
+	  							current.namespace.makros.push(current.makro);
+	  						}
+	  					}
+  					}
 	  			}
 	  		}
 	  	}
