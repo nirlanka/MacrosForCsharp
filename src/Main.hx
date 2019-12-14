@@ -1,40 +1,14 @@
 import macromania.Parser;
 
+import macromania.readers.FileIOFactory;
+
 class Main {
 
-  static function main() {
-  	var code = '
-	using Abc.Def;
-	namespace Abc.Hijk
-	{
-		// macro: set NamespaceName
-		string namespaceName = default;
-
-		public class Haha: ILaugh
-		{
-			// macro: set ClassName
-			string className = default;
-
-			public Haha()
-			{
-				// Constructor
-
-				// macro: set MethodName
-				string methodName = default;
-				
-			}
-			public void Foo()
-			{
-				// Foo
-			}
-			private List<Xy.Zw> Bar()
-			{
-				// Bar
-			}
-		}
+	static function main() {
+	  	var fac = new FileIOFactory('/Users/nirmal/Dev/haxe-one/test');
+	  	var io = fac.getNextReader();
+	  	io.read();
+	  	var code = io.getContent();
+		(new Parser(code)).parse().trace();
 	}
-	';
-
-	(new Parser(code)).parse().trace();
-  }
 }

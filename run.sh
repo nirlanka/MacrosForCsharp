@@ -1,2 +1,2 @@
 haxe build.hxml
-python ./bin/python/main.py
+python3 ./bin/python/main.py
