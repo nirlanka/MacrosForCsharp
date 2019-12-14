@@ -21,6 +21,7 @@ class Main {
 
 				// macro: set MethodName
 				string methodName = default;
+				
 			}
 			public void Foo()
 			{

@@ -30,6 +30,9 @@ class Parser {
 
       for (mm in n.makros) {
         trace('\t# ' + mm.command);
+        for (mml in mm.code) {
+          trace('\t#\t ' + StringTools.trim(mml));
+        }
       }
 
   		for (k in n.klasses) {
@@ -37,6 +40,9 @@ class Parser {
 
         for (mm in k.makros) {
           trace('\t\t# ' + mm.command);
+          for (mml in mm.code) {
+            trace('\t\t#\t ' + StringTools.trim(mml));
+          }
         }
 
   			for (m in k.methods) {
@@ -44,6 +50,9 @@ class Parser {
 
           for (mm in m.makros) {
             trace('\t\t\t# ' + mm.command);
+            for (mml in mm.code) {
+              trace('\t\t\t#\t ' + StringTools.trim(mml));
+            }
           }
   			}
   		}
