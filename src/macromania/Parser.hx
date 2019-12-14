@@ -26,32 +26,32 @@ class Parser {
 
   public function trace() {
   	for (n in ast) {
-  		trace(n.name);
+  		trace('<namespace> ' + n.name);
 
       for (mm in n.makros) {
         trace('\t# ' + mm.command);
         for (mml in mm.code) {
-          trace('\t#\t ' + StringTools.trim(mml));
+          trace('\t# ' + StringTools.trim(mml));
         }
       }
 
   		for (k in n.klasses) {
-  			trace('\t' + k.name);
+  			trace('\t' + '<class> ' + k.name);
 
         for (mm in k.makros) {
           trace('\t\t# ' + mm.command);
           for (mml in mm.code) {
-            trace('\t\t#\t ' + StringTools.trim(mml));
+            trace('\t\t# ' + StringTools.trim(mml));
           }
         }
 
   			for (m in k.methods) {
-  				trace('\t\t' + m.name);
+  				trace('\t\t' + '<method> ' + m.name);
 
           for (mm in m.makros) {
             trace('\t\t\t# ' + mm.command);
             for (mml in mm.code) {
-              trace('\t\t\t#\t ' + StringTools.trim(mml));
+              trace('\t\t\t# ' + StringTools.trim(mml));
             }
           }
   			}
