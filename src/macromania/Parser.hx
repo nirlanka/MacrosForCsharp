@@ -60,4 +60,16 @@ class Parser {
 
   	return this;
   }
+
+  public function process() {
+    // 
+
+    return this;
+  }
+
+  public function write() {
+    // 
+
+    return this;
+  }
 }
