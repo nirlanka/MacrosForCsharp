@@ -11,7 +11,7 @@ class OverviewParseStrategy implements IParseStrategy {
 	var ast: Array<Namespace>; 
 	var current: Context;
 
-	public inline function new() {}
+	public function new() {}
 
 	public function setup(code: String, ast: Array<Namespace>, current: Context) {
 		this.code = code;

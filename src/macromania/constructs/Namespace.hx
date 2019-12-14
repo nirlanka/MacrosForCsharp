@@ -5,7 +5,7 @@ class Namespace implements IMakroContainer {
 	public var klasses: Array<Klass> = [];
 	public var makros: Array<Makro> = [];
 
-	public inline function new(name) {
+	public function new(name) {
 		this.name = name;
 	}
 }

@@ -6,5 +6,5 @@ class Context {
 	public var method: Method;
 	public var makro: Makro;
 
-	public inline function new() {}
+	public function new() {}
 }
