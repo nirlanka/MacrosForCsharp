@@ -7,23 +7,19 @@ class FileIOFactory {
 
 	public function new(folderPath: String) {
 		recursiveLoop(folderPath);
-
-		// trace('Files: $fileNames');
 	}
 
 	function recursiveLoop(directory:String) {
 	  if (sys.FileSystem.exists(directory)) {
-	    // trace("Directory found: " + directory);
-	    for (file in sys.FileSystem.readDirectory(directory)) {
+	    
+		for (file in sys.FileSystem.readDirectory(directory)) {
 	      var path = haxe.io.Path.join([directory, file]);
 	      if (!sys.FileSystem.isDirectory(path)) {
-	        // trace("File found: " + path);
 	        if (isValidCandidateFile(path)) {
 	        	fileNames.push(path);
         	}
 	      } else {
 	        var directory = haxe.io.Path.addTrailingSlash(path);
-	        // trace("Directory found: " + directory);
 	        recursiveLoop(directory);
 	      }
 	    }
@@ -33,13 +29,11 @@ class FileIOFactory {
 	}
 
 	function isValidCandidateFile(path: String) {
-		var _reversedArray = path.split('');
-		_reversedArray.reverse();
-		var reversed = _reversedArray.join('');
+		var csReg = ~/.+([\.\w]*.cs)/;
+		var isCsMatch = csReg.match(path);
+		var ext = csReg.matched(1);
 
-		// trace('Reversed: ' + reversed);
-
-		if (reversed.substr(0, 3) == 'sc.') {
+		if (isCsMatch && ext != '.i.cs' && ext != '.g.cs') {
 			return true;
 		} else {
 			return false;
