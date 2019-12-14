@@ -29,11 +29,10 @@ class FileIOFactory {
 	}
 
 	function isValidCandidateFile(path: String) {
-		var csReg = ~/.+([\.\w]*.cs)/;
+		var csReg = ~/.+\.cs/;
 		var isCsMatch = csReg.match(path);
-		var ext = csReg.matched(1);
 
-		if (isCsMatch && ext != '.i.cs' && ext != '.g.cs') {
+		if (isCsMatch) {
 			return true;
 		} else {
 			return false;
